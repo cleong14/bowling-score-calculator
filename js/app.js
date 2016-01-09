@@ -33,21 +33,25 @@ function bowlingCalculator (pinsList1, pinsList2) {
 
     // no strike or spare
     if (pinsHit.length !== pinNumbers.length) {
-      for (var i = 0; i < pinsHit.length; i++) {
-        score += pinsHit[i];
-      } // for loop
+      score += pinsHit.length;
       framesLeft--;
       ballsLeft = 2;
     } // nested if !==
 
     // spare
     if (pinsHit.length === pinNumbers.length && ballsLeft === 0) {
-      for (var j = 0; j < pinsHit.length; j++) {
-        score += pinsHit[j];
-      } // for loop
+      score += pinsHit.length;
+      ballsLeft = 2;
     } // if spare
+
+    // strike 
+    if (pinsHit.length === pinNumbers.length && ballsLeft === 1) {
+      score += pinsHit.length;
+      ballsLeft = 2;
+    }
   } // if > 1
-  console.log(score);
 }
 
-bowlingCalculator([1, 2, 3, 5], [4, 6]);
+// bowlingCalculator([1, 2, 3, 5], [4, 6]); // 6 (no spare/strike)
+// bowlingCalculator([1, 2, 3, 4, 5], [6, 7, 8, 9, 10]); // 10 (spare)
+bowlingCalculator([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]); // 10 (strike)
